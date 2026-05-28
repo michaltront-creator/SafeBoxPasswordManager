@@ -1,0 +1,302 @@
+﻿<Window x:Class="SafeBoxPasswordManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SafeBoxPasswordManager"
+        mc:Ignorable="d"
+        Title="SafeBox Password Manager"
+        Height="650"
+        Width="1000"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#F4F6F8">
+
+        <Border x:Name="LoginPanel"
+                Width="360"
+                Padding="24"
+                Background="White"
+                CornerRadius="8"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="SafeBox"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8"/>
+
+                <TextBlock Text="Lokalny menedżer haseł"
+                           FontSize="14"
+                           Foreground="#555"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,24"/>
+
+                <TextBlock Text="Hasło główne"
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,6"/>
+
+                <PasswordBox x:Name="MasterPasswordBox"
+                             Height="34"
+                             Margin="0,0,0,16"/>
+
+                <Button x:Name="UnlockButton"
+                        Content="Odblokuj"
+                        Height="36"
+                        Click="UnlockButton_Click"/>
+
+                <TextBlock x:Name="StatusTextBlock"
+                           Text=""
+                           Foreground="Red"
+                           TextWrapping="Wrap"
+                           Margin="0,16,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <Grid x:Name="VaultPanel"
+              Visibility="Collapsed"
+              Margin="24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="White"
+                    Padding="20"
+                    CornerRadius="8"
+                    Margin="0,0,0,16">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Left">
+                        <TextBlock Text="SafeBox"
+                                   FontSize="26"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="Sejf został odblokowany"
+                                   Foreground="#555"/>
+                    </StackPanel>
+
+                    <Button Content="Zablokuj"
+                            Width="120"
+                            Height="34"
+                            HorizontalAlignment="Right"
+                            DockPanel.Dock="Right"
+                            Click="LockButton_Click"/>
+                </DockPanel>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="340"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+            Background="White"
+            Padding="20"
+            CornerRadius="8">
+                    <StackPanel>
+                        <TextBlock Text="Dodaj wpis"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Nazwa serwisu"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,4"/>
+                        <TextBox x:Name="ServiceNameTextBox"
+                     Height="32"
+                     Margin="0,0,0,12"/>
+
+                        <TextBlock Text="Login / e-mail"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,4"/>
+                        <TextBox x:Name="UsernameTextBox"
+                     Height="32"
+                     Margin="0,0,0,12"/>
+
+                        <TextBlock Text="Hasło"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,4"/>
+                        <TextBox x:Name="PasswordTextBox"
+                     Height="32"
+                     Margin="0,0,0,12"/>
+                        <Button x:Name="GeneratePasswordButton"
+        Content="Wygeneruj silne hasło"
+        Height="32"
+        Margin="0,0,0,12"
+        Click="GeneratePasswordButton_Click"/>
+
+                        <TextBlock Text="Adres URL"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,4"/>
+                        <TextBox x:Name="UrlTextBox"
+                     Height="32"
+                     Margin="0,0,0,12"/>
+
+                        <TextBlock Text="Notatka"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,4"/>
+                        <TextBox x:Name="NotesTextBox"
+                     Height="80"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Margin="0,0,0,16"/>
+
+                        <Button x:Name="AddEntryButton"
+        Content="Dodaj wpis"
+        Height="36"
+        Click="AddEntryButton_Click"/>
+                        <Button x:Name="NewEntryButton"
+        Content="Nowy wpis"
+        Height="36"
+        Margin="0,8,0,0"
+        Click="NewEntryButton_Click"/>
+                        
+
+                        <TextBlock x:Name="EntryStatusTextBlock"
+                       Text=""
+                       Foreground="Red"
+                       TextWrapping="Wrap"
+                       Margin="0,12,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2"
+        Background="White"
+        Padding="20"
+        CornerRadius="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="220"/>
+                            <RowDefinition Height="16"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                  <StackPanel>
+    <TextBlock Text="Zapisane hasła"
+               FontSize="20"
+               FontWeight="Bold"
+               Margin="0,0,0,12"/>
+
+    <TextBox x:Name="SearchTextBox"
+             Height="32"
+             Margin="0,0,0,12"
+             TextChanged="SearchTextBox_TextChanged"/>
+</StackPanel>
+
+<ListBox x:Name="EntriesListBox"
+         Grid.Row="1"
+         SelectionChanged="EntriesListBox_SelectionChanged"/>
+
+                        <Border Grid.Row="3"
+                BorderBrush="#DDD"
+                BorderThickness="1"
+                Padding="16"
+                CornerRadius="6">
+                            <StackPanel>
+                                <TextBlock Text="Szczegóły wpisu"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Margin="0,0,0,12"/>
+
+                                <TextBlock Text="Serwis"
+                           FontWeight="SemiBold"/>
+                                <TextBlock x:Name="SelectedServiceTextBlock"
+                           Text="-"
+                           Margin="0,0,0,8"/>
+
+                                <TextBlock Text="Login / e-mail"
+                           FontWeight="SemiBold"/>
+                                <TextBlock x:Name="SelectedUsernameTextBlock"
+                           Text="-"
+                           Margin="0,0,0,8"/>
+
+                                <TextBlock Text="Hasło"
+                           FontWeight="SemiBold"/>
+                                <TextBlock x:Name="SelectedPasswordTextBlock"
+                           Text="-"
+                           Margin="0,0,0,8"/>
+
+                                <TextBlock Text="Adres URL"
+                           FontWeight="SemiBold"/>
+                                <TextBlock x:Name="SelectedUrlTextBlock"
+                           Text="-"
+                           Margin="0,0,0,8"/>
+
+                                <TextBlock Text="Notatka"
+           FontWeight="SemiBold"/>
+                                <TextBlock x:Name="SelectedNotesTextBlock"
+           Text="-"
+           TextWrapping="Wrap"
+           Margin="0,0,0,16"/>
+
+                                <Button Content="Usuń wpis"
+        Height="34"
+        Width="120"
+        HorizontalAlignment="Left"
+        Click="DeleteEntryButton_Click"/>
+
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+        </Grid>
+        <Border x:Name="TotpPanel"
+        Visibility="Collapsed"
+        Width="420"
+        Padding="24"
+        Background="White"
+        CornerRadius="8"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Weryfikacja 2FA"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,8"/>
+
+                <TextBlock x:Name="TotpInfoTextBlock"
+                   Text="Wpisz kod z Google Authenticator."
+                   Foreground="#555"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   Margin="0,0,0,16"/>
+
+                <TextBlock x:Name="TotpSecretLabel"
+           Text="Klucz konfiguracji"
+           FontWeight="SemiBold"
+           Margin="0,0,0,4"/>
+
+                <TextBox x:Name="TotpSecretTextBox"
+         IsReadOnly="True"
+         Height="32"
+         Margin="0,0,0,12"/>
+
+
+                <TextBlock Text="Kod 2FA"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,4"/>
+
+                <TextBox x:Name="TotpCodeTextBox"
+                 Height="32"
+                 MaxLength="6"
+                 Margin="0,0,0,16"/>
+
+                <Button Content="Zweryfikuj"
+                Height="36"
+                Click="VerifyTotpButton_Click"/>
+
+                <TextBlock x:Name="TotpStatusTextBlock"
+                   Text=""
+                   Foreground="Red"
+                   TextWrapping="Wrap"
+                   Margin="0,12,0,0"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

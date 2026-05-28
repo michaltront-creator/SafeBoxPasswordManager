@@ -1,0 +1,24 @@
+﻿.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.cache
+*.pdb
+*.log
+*.tmp
+
+# Lokalne dane aplikacji - nie publikować
+password_entries.json
+master_password.dat
+totp_secret.dat
+
+# System / edytory
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Publikacja aplikacji
+release/single-exe/
+release/**/*.pdb

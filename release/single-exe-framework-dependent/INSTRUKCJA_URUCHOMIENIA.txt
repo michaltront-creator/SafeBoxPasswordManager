@@ -1,0 +1,12 @@
+Uruchamianie aplikacji SafeBox Password Manager
+
+1. Pobierz plik SafeBoxPasswordManager.exe.
+2. Uruchom plik dwuklikiem.
+3. Przy pierwszym uruchomieniu ustaw haslo glowne.
+4. Skonfiguruj Google Authenticator i wpisz kod 2FA.
+
+Uwaga:
+Ta wersja nie wymaga Visual Studio, ale moze wymagac zainstalowanego .NET Runtime zgodnego z projektem.
+Jezeli aplikacja nie uruchomi sie na innym komputerze, nalezy zainstalowac najnowszy .NET Desktop Runtime dla Windows x64.
+
+Pliki danych, takie jak password_entries.json, master_password.dat i totp_secret.dat, sa tworzone lokalnie dopiero po pierwszym uruchomieniu aplikacji.
