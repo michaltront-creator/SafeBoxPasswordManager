@@ -29,9 +29,6 @@ SafeBox Password Manager to aplikacja desktopowa napisana w C#/.NET z interfejse
 3. Uruchom projekt zielonym przyciskiem Start.
 4. Przy pierwszym uruchomieniu ustaw hasło główne i skonfiguruj Google Authenticator.
 
-## Dokumentacja
-
-Raport końcowy znajduje się w folderze `docs`.
 
 ## Ważne
 
